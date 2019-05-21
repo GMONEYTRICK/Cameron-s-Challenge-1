@@ -4,25 +4,25 @@ class hero {
 
 	int heroCurrentHealth;
 	
-	public int heroHealth(int damage, int heroCurrentHealth) {
+	int heroHealth(int damage, int heroCurrentHealth) {
 		
 		heroCurrentHealth -= damage;
 		return heroCurrentHealth;
 		
 	}
 	
-	public int heroDamage() {
+	int heroDamage() {
 		
 		int hitNumber =(int) Math.round((Math.random()*((35-10)+1))+10);
 		return hitNumber;
 	}
 	
-	public int setHeroHealth(int health) {
+	int setHeroHealth(int health) {
 		heroCurrentHealth = health;
 		return heroCurrentHealth;
 	}
 	
-	public int getHeroHealth() {
+	int getHeroHealth() {
 		return heroCurrentHealth;
 	}
 }
@@ -32,7 +32,7 @@ class belias {
 	int beliasCurrentHealth;
 	boolean lowHealth = false; 
 	
-	public int beliasHealth(int damage, int beliasCurrentHealth) {
+	int beliasHealth(int damage, int beliasCurrentHealth) {
 	
 		//deducts the attack damage from belias' current health
 		beliasCurrentHealth -= damage;
@@ -47,29 +47,29 @@ class belias {
 		return 	beliasCurrentHealth;
 	}
 	
-	public int beliasDamage() {
+	int beliasDamage() {
 		
 		int hitNumber =(int) Math.round((Math.random()*((100-40)+1))+40);
 		return hitNumber;
 		
 	}
 	
-	public int setBeliasHealth(int health) {
+	int setBeliasHealth(int health) {
 		beliasCurrentHealth = health;
 		return beliasCurrentHealth;
 	}
-	public int getBeliasHealth() {
+	int getBeliasHealth() {
 		return beliasCurrentHealth;
 	}
 }
 
 
-public class battle {
+class solution_garrett {
 	
-	public static belias beliasObject = new belias();
-	public static hero heroObject = new hero();
-	public static Scanner input = new Scanner(System.in);
-	public static String command;
+	static belias beliasObject = new belias();
+	static hero heroObject = new hero();
+	static Scanner input = new Scanner(System.in);
+	static String command;
 	
 	
 	
@@ -80,13 +80,13 @@ public class battle {
 		System.out.println("You have summoned the great and powerful Belias, the Gigas!");
 		System.out.println("You must defeat him in combat. To attack, press space!");
 		
-		battle.combat();
+		solution_garrett.combat();
 		
 		System.out.println("Congratulations!!! You defeated Belias, the Gigas!");
 	}
 	
 	
-	public static void combat() {
+	static void combat() {
 			
 			command = input.nextLine();
 		
@@ -99,8 +99,7 @@ public class battle {
 			
 				beliasObject.setBeliasHealth(beliasObject.beliasHealth(heroObject.heroDamage(), beliasObject.getBeliasHealth()));
 				System.out.println();
-				System.out.print("Belias now has " + beliasObject.getBeliasHealth());
-				System.out.println(" health points.");
+				System.out.println("Belias now has " + beliasObject.getBeliasHealth() + " health points.");
 				System.out.println();
 				
 				if(beliasObject.getBeliasHealth() <= 0) {
@@ -111,11 +110,10 @@ public class battle {
 				System.out.println("That son of a bitch Belias swipes his giant meat hook at you.  LOOK OUT!");
 				heroObject.setHeroHealth(heroObject.heroHealth(beliasObject.beliasDamage(), heroObject.getHeroHealth()));
 				System.out.println();
-				System.out.print("You now have " + heroObject.getHeroHealth());
-				System.out.println(" health points.");
+				System.out.print("You now have " + heroObject.getHeroHealth() + " health points.");
 				System.out.println();
 				
-				battle.combat();
+				solution_garrett.combat();
 			
 			}while(beliasObject.getBeliasHealth() > 0 && heroObject.getHeroHealth() > 0 && command.equals("attack"));
 			
